@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://owl4soul.github.com"
+           xmlns:tns= "http://owl4soul.github.com"
+           elementFormDefault="qualified">
+
+    <!-- Команда для получения java-классов в нужном пакете:
+    xjc -p com.github.owl4soul.shopping_service.model purchase_schema.xsd -->
+
+    <xs:simpleType name="purchase_type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="tv"/>
+            <xs:enumeration value="smartphone"/>
+            <xs:enumeration value="juicer"/>
+            <xs:enumeration value="headphones"/>
+            <xs:enumeration value="keyboard"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="purchase_item">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="purchase_Type" type="tns:purchase_type"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="order">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="lastname" type="xs:string"/>
+            <xs:element name="age" type="xs:integer" nillable="true"/>
+            <xs:element name="purchase_item" type="tns:purchase_item"/>
+            <xs:element name="count" type="xs:long"/>
+            <xs:element name="amount" type="xs:positiveInteger" nillable="true"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
